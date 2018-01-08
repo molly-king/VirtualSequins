@@ -98,8 +98,8 @@ public class Sequin extends ConstraintLayout {
                 if (lastY != 0) {
                     float delta = event.getY() - lastY;
                     Log.d("Delta", " " + delta);
-                    if ((delta > 0 && isFront) ||
-                            (delta < 0 && !isFront)) {
+                    if ((delta > 10 && isFront) ||
+                            (delta < 10 && !isFront)) {
                         flip();
                     }
                 }

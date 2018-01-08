@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var layout = findViewById<ConstraintLayout>(R.id.layout)
-        var squareSize = 3
+        var squareSize = 7
         var i = 0
         val chainseed = 1000
         while (i < squareSize) {
@@ -39,12 +39,13 @@ class MainActivity : AppCompatActivity() {
             }
 //            connect horizontally
             constraints.addToHorizontalChain(topSequin.id, leftId, rightId)
-            constraints.setHorizontalChainStyle(topSequin.id, ConstraintSet.CHAIN_PACKED)
+//            constraints.setHorizontalChainStyle(topSequin.id, ConstraintSet.CHAIN_PACKED)
             constraints.applyTo(layout)
             while (j < squareSize) {
                 val s = Sequin(this)
                 val seed = 100 * i
                 s.id = seed + j
+                s.z = 2.0f * i
                 layout.addView(s, ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT))
                 val constraintSet = ConstraintSet()
                 constraintSet.clone(layout)
