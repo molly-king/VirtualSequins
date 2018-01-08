@@ -3,11 +3,14 @@ package com.tamollyking.virtualsequins;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -21,6 +24,7 @@ public class Sequin extends ConstraintLayout {
     private View front;
     private View back;
     private boolean isFront;
+    float lastY = 0;
 
     public Sequin(Context context) {
         super(context);
@@ -73,6 +77,7 @@ public class Sequin extends ConstraintLayout {
     }
 
     public void flip() {
+        lastY = 0;
         if (isFront) {
             show.setTarget(back);
             hide.setTarget(front);
@@ -83,4 +88,27 @@ public class Sequin extends ConstraintLayout {
         hide.start();
         show.start();
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                if (lastY != 0) {
+                    float delta = event.getY() - lastY;
+                    Log.d("Delta", " " + delta);
+                    if ((delta > 0 && isFront) ||
+                            (delta < 0 && !isFront)) {
+                        flip();
+                    }
+                }
+                lastY = event.getY();
+                return true;
+            case MotionEvent.ACTION_UP:
+                return false;
+        }
+        return super.onTouchEvent(event);
+    }
+
 }
