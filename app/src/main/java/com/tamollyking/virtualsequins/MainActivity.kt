@@ -10,19 +10,15 @@ import android.view.ViewGroup
 
 class MainActivity : AppCompatActivity() {
 
-
-
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var layout = findViewById<ConstraintLayout>(R.id.layout)
-        var squareSize = 7
-        var i = 0
+        var layout = findViewById<SequinLayout>(R.id.layout)
+        var squareSize = 5
         val chainseed = 1000
-        while (i < squareSize) {
+        for (i in 0 until squareSize) {
             val topSequin = Sequin(this)
-            var j = 1
             topSequin.id = chainseed + i
             layout.addView(topSequin)
             val constraints = ConstraintSet()
@@ -39,9 +35,8 @@ class MainActivity : AppCompatActivity() {
             }
 //            connect horizontally
             constraints.addToHorizontalChain(topSequin.id, leftId, rightId)
-//            constraints.setHorizontalChainStyle(topSequin.id, ConstraintSet.CHAIN_PACKED)
             constraints.applyTo(layout)
-            while (j < squareSize) {
+            for (j in 1 until squareSize) {
                 val s = Sequin(this)
                 val seed = 100 * i
                 s.id = seed + j
@@ -57,10 +52,7 @@ class MainActivity : AppCompatActivity() {
                 constraintSet.connect(s.id, ConstraintSet.TOP, topId, ConstraintSet.BOTTOM)
                 constraintSet.connect(s.id, ConstraintSet.BOTTOM, topId, ConstraintSet.BOTTOM)
                 constraintSet.applyTo(layout)
-                j++
             }
-
-            i++
         }
         findViewById<FloatingActionButton>(R.id.floatingActionButton).setOnClickListener({
             flip(findViewById<Sequin>(1000))
@@ -68,6 +60,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun flip(sequin: Sequin) {
-        sequin.flip()
+        sequin.flip(30.0f)
     }
 }

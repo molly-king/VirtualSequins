@@ -3,13 +3,11 @@ package com.tamollyking.virtualsequins;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -76,38 +74,41 @@ public class Sequin extends ConstraintLayout {
         back = findViewById(R.id.back);
     }
 
-    public void flip() {
-        lastY = 0;
-        if (isFront) {
+    public void flip(float delta) {
+        if (isFront && delta > 10) {
             show.setTarget(back);
             hide.setTarget(front);
-        } else {
+            hide.start();
+            show.start();
+            lastY = 0;
+        }
+        if (!isFront && delta < 10){
             show.setTarget(front);
             hide.setTarget(back);
+            hide.start();
+            show.start();
+            lastY = 0;
         }
-        hide.start();
-        show.start();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getActionMasked()) {
-            case MotionEvent.ACTION_DOWN:
-                return true;
-            case MotionEvent.ACTION_MOVE:
-                if (lastY != 0) {
-                    float delta = event.getY() - lastY;
-                    Log.d("Delta", " " + delta);
-                    if ((delta > 10 && isFront) ||
-                            (delta < 10 && !isFront)) {
-                        flip();
-                    }
-                }
-                lastY = event.getY();
-                return true;
-            case MotionEvent.ACTION_UP:
-                return false;
-        }
+//        switch (event.getActionMasked()) {
+//            case MotionEvent.ACTION_DOWN:
+//                return true;
+//            case MotionEvent.ACTION_MOVE:
+//                if (lastY != 0) {
+//                    float delta = event.getY() - lastY;
+//                    lastY = event.getY();
+//                    flip(delta);
+//                    Log.d("Delta", " " + delta);
+//                } else {
+//                    lastY = event.getY();
+//                }
+//                return true;
+//            case MotionEvent.ACTION_UP:
+//                return false;
+//        }
         return super.onTouchEvent(event);
     }
 
