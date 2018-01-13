@@ -1,15 +1,19 @@
-package com.tamollyking.virtualsequins;
+package com.tamollyking.virtualsequins.views;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
-import android.support.annotation.Nullable;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
+import android.widget.ImageView;
+
+import com.tamollyking.virtualsequins.R;
 
 /**
  * Created by mollyrand on 1/7/18.
@@ -19,27 +23,18 @@ public class Sequin extends ConstraintLayout {
 
     private AnimatorSet show;
     private AnimatorSet hide;
-    private View front;
-    private View back;
+    private ImageView front;
+    private ImageView back;
     private boolean isFront;
     float lastY = 0;
 
-    public Sequin(Context context) {
+    public Sequin(Context context, SequinModel model) {
         super(context);
-        setup(context);
+        setup(context, model);
     }
 
-    public Sequin(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        setup(context);
-    }
 
-    public Sequin(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        setup(context);
-    }
-
-    private void setup(Context context) {
+    private void setup(Context context, SequinModel dataModel) {
         show = (AnimatorSet) AnimatorInflater.loadAnimator(context, R.animator.back_in);
         show.addListener(new Animator.AnimatorListener() {
             @Override
@@ -71,7 +66,18 @@ public class Sequin extends ConstraintLayout {
         isFront = true;
         inflate(context, R.layout.sequin, this);
         front = findViewById(R.id.front);
+        Drawable frontDrawable = ContextCompat.getDrawable(context, R.drawable.sequin_a);
+        frontDrawable.setColorFilter(new
+                PorterDuffColorFilter(Color.parseColor(dataModel.getFrontColorHex()), PorterDuff.Mode.DST_OVER));
+        front.setImageDrawable(frontDrawable);
+        Drawable backDrawable = ContextCompat.getDrawable(context, R.drawable.sequin_b);
+        backDrawable.setColorFilter(new PorterDuffColorFilter(Color.parseColor(dataModel.getBackColorHex())
+                , PorterDuff.Mode.DST_OVER));
         back = findViewById(R.id.back);
+        back.setImageDrawable(backDrawable);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(dataModel.getDiameter(), dataModel.getDiameter());
+        front.setLayoutParams(params);
+        back.setLayoutParams(params);
     }
 
     public void flip(float delta) {
@@ -90,26 +96,4 @@ public class Sequin extends ConstraintLayout {
             lastY = 0;
         }
     }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-//        switch (event.getActionMasked()) {
-//            case MotionEvent.ACTION_DOWN:
-//                return true;
-//            case MotionEvent.ACTION_MOVE:
-//                if (lastY != 0) {
-//                    float delta = event.getY() - lastY;
-//                    lastY = event.getY();
-//                    flip(delta);
-//                    Log.d("Delta", " " + delta);
-//                } else {
-//                    lastY = event.getY();
-//                }
-//                return true;
-//            case MotionEvent.ACTION_UP:
-//                return false;
-//        }
-        return super.onTouchEvent(event);
-    }
-
 }

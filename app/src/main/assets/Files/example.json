@@ -1,0 +1,102 @@
+{
+  "columns": [
+    {
+      "index": 0,
+      "sequins": [
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah"
+      ]
+    },
+    {
+      "index": 4,
+      "sequins": [
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah"
+      ]
+    },
+    {
+      "index": 1,
+      "sequins": [
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo"
+      ]
+    },
+    {
+      "index": 2,
+      "sequins": [
+        "blah",
+        "blah",
+        "blah",
+        "bloo",
+        "blah",
+        "blah",
+        "blah"
+      ]
+    },
+    {
+      "index": 3,
+      "sequins": [
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo",
+        "bloo"
+      ]
+    },
+    {
+      "index": 6,
+      "sequins": [
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah",
+        "blah"
+      ]
+    },
+    {
+      "index": 5,
+      "sequins": [
+        "blah",
+        "blah",
+        "bloo",
+        "blah",
+        "bloo",
+        "bloo",
+        "bloo"
+      ]
+    }
+  ],
+  "sequins": [
+    {
+      "id": "blah",
+      "frontColorHex": "#DFC300",
+      "backColorHex": "#C70039",
+      "diameter": 180
+    },
+    {
+      "id": "bloo",
+      "frontColorHex": "#DFC300",
+      "backColorHex": "#FFFFFF",
+      "diameter": 180
+    }
+  ]
+}

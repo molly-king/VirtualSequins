@@ -1,25 +1,44 @@
 package com.tamollyking.virtualsequins
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
-import android.support.design.widget.FloatingActionButton
 import android.view.ViewGroup
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
+import com.tamollyking.virtualsequins.views.LayoutModel
+import com.tamollyking.virtualsequins.views.Sequin
+import com.tamollyking.virtualsequins.views.SequinLayout
+import com.tamollyking.virtualsequins.views.SequinModel
+import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var layoutJson: String
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var layout = findViewById<SequinLayout>(R.id.layout)
-        var squareSize = 5
+
+        layoutJson = readLayoutFile()
+
+        val moshi = Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+        val layoutMod = moshi.adapter<LayoutModel>(LayoutModel::class.java).fromJson(layoutJson)
+        var sequinMap : Map<String, SequinModel> = HashMap<String, SequinModel>()
+        for (sequin in layoutMod!!.sequins) {
+            sequinMap = sequinMap.plus(Pair(sequin.id, sequin))
+        }
         val chainseed = 1000
-        for (i in 0 until squareSize) {
-            val topSequin = Sequin(this)
-            topSequin.id = chainseed + i
+        for (column in layoutMod.columns) {
+            val firstId = column.sequins.get(0)
+            val topSequin = Sequin(this, sequinMap.get(firstId))
+            topSequin.id = chainseed + column.index
             layout.addView(topSequin)
             val constraints = ConstraintSet()
             constraints.clone(layout)
@@ -27,21 +46,22 @@ class MainActivity : AppCompatActivity() {
             constraints.connect(topSequin.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
             var leftId = ConstraintSet.PARENT_ID
             var rightId = ConstraintSet.PARENT_ID
-            if (i > 0) {
+            if (column.index > 0) {
                 leftId = topSequin.id - 1
             }
-            if (i < squareSize - 1) {
+            if (column.index < layoutMod.columns.size - 1) {
                 rightId = topSequin.id + 1
             }
 //            connect horizontally
             constraints.addToHorizontalChain(topSequin.id, leftId, rightId)
             constraints.applyTo(layout)
-            for (j in 1 until squareSize) {
-                val s = Sequin(this)
-                val seed = 100 * i
+            for (j in 1 until column.sequins.size) {
+                val sequinId = column.sequins.get(j)
+                val s = Sequin(this, sequinMap.get(sequinId))
+                val seed = 100 * column.index
                 s.id = seed + j
-                s.z = 2.0f * i
-                layout.addView(s, ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+                s.z = 2.0f * column.index
+                layout.addView(s)
                 val constraintSet = ConstraintSet()
                 constraintSet.clone(layout)
                 var topId = if (j > 1)  s.id - 1 else topSequin.id
@@ -54,12 +74,15 @@ class MainActivity : AppCompatActivity() {
                 constraintSet.applyTo(layout)
             }
         }
-        findViewById<FloatingActionButton>(R.id.floatingActionButton).setOnClickListener({
-            flip(findViewById<Sequin>(1000))
-        })
     }
 
-    fun flip(sequin: Sequin) {
-        sequin.flip(30.0f)
+
+    fun readLayoutFile(): String {
+        val inputStream : InputStream = assets.open("Files/example.json")
+        val inputString = inputStream.bufferedReader().use {
+            it.readText()
+        }
+        return inputString
     }
+
 }

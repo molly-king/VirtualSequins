@@ -1,14 +1,11 @@
-package com.tamollyking.virtualsequins
+package com.tamollyking.virtualsequins.views
 
 import android.content.Context
 import android.graphics.Rect
 import android.support.constraint.ConstraintLayout
 import android.view.MotionEvent
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import android.util.AttributeSet
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 
 

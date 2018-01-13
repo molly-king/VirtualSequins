@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.tamollyking.virtualsequins.Sequin
+    <com.tamollyking.virtualsequins.views.Sequin
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sequin_1"
