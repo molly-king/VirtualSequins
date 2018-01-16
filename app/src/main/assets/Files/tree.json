@@ -1,0 +1,123 @@
+{
+  "columns": [
+    {
+      "index": 0,
+      "sequins": [
+        "r",
+        "r",
+        "r",
+        "r",
+        "r",
+        "r",
+        "g",
+        "g",
+        "r",
+        "r"
+      ]
+    },
+    {
+      "index": 1,
+      "sequins": [
+        "r",
+        "r",
+        "r",
+        "r",
+        "g",
+        "g",
+        "g",
+        "g",
+        "r",
+        "r"
+      ]
+    },
+    {
+      "index":2,
+      "sequins": [
+        "r",
+        "r",
+        "r",
+        "g",
+        "g",
+        "g",
+        "g",
+        "g",
+        "r",
+        "r"
+      ]
+    },
+    {
+      "index": 3,
+      "sequins": [
+        "r",
+        "r",
+        "g",
+        "g",
+        "g",
+        "g",
+        "g",
+        "g",
+        "g",
+        "r"
+      ]
+    },
+    {
+      "index": 4,
+      "sequins": [
+        "r",
+        "r",
+        "r",
+        "g",
+        "g",
+        "g",
+        "g",
+        "g",
+        "r",
+        "r"
+      ]
+    },
+    {
+      "index": 5,
+      "sequins": [
+        "r",
+        "r",
+        "r",
+        "r",
+        "g",
+        "g",
+        "g",
+        "g",
+        "r",
+        "r"
+      ]
+    },
+    {
+      "index": 6,
+      "sequins": [
+        "r",
+        "r",
+        "r",
+        "r",
+        "r",
+        "r",
+        "g",
+        "g",
+        "r",
+        "r"
+      ]
+    }
+  ],
+  "sequins": [
+    {
+      "id": "r",
+      "frontColorHex": "#DFC300",
+      "backColorHex": "#FF0000",
+      "diameter": 180
+    },
+    {
+      "id": "g",
+      "frontColorHex": "#DFC300",
+      "backColorHex": "#108011",
+      "diameter": 180
+    }
+  ]
+}

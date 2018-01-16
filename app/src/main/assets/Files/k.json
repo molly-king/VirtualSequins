@@ -1,0 +1,205 @@
+{
+  "columns": [
+    {
+      "index": 0,
+      "sequins": [
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl"
+      ]
+    },
+    {
+      "index": 1,
+      "sequins": [
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl"
+      ]
+    },
+    {
+      "index": 2,
+      "sequins": [
+        "wl",
+        "rl",
+        "rl",
+        "rl",
+        "rl",
+        "rl",
+        "rl",
+        "rl",
+        "rl",
+        "wl"
+      ]
+    },
+    {
+      "index":3,
+      "sequins": [
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "rs",
+        "rs",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws"
+      ]
+    },
+    {
+      "index": 4,
+      "sequins": [
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "rs",
+        "rs",
+        "ws",
+        "ws",
+        "rs",
+        "rs",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws"
+      ]
+    },
+    {
+      "index": 5,
+      "sequins": [
+        "ws",
+        "ws",
+        "ws",
+        "rs",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "rs",
+        "ws",
+        "ws",
+        "ws",
+        "ws"
+      ]
+    },
+    {
+      "index": 6,
+      "sequins": [
+        "ws",
+        "ws",
+        "rs",
+        "rs",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "rs",
+        "rs",
+        "ws",
+        "ws",
+        "ws"
+      ]
+    },
+    {
+      "index": 7,
+      "sequins": [
+        "ws",
+        "rs",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "ws",
+        "rs",
+        "ws",
+        "ws"
+      ]
+    },
+    {
+      "index": 8,
+      "sequins": [
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl"
+      ]
+    },
+    {
+      "index": 9,
+      "sequins": [
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl",
+        "wl"
+      ]
+    }
+  ],
+  "sequins": [
+    {
+      "id": "rs",
+      "frontColorHex": "#000000",
+      "backColorHex": "#28B463",
+      "diameter": 120
+    },
+    {
+      "id": "rl",
+      "frontColorHex": "#000000",
+      "backColorHex": "#28B463",
+      "diameter": 180
+    },
+    {
+      "id": "ws",
+      "frontColorHex": "#000000",
+      "backColorHex": "#FFFFFF",
+      "diameter": 120
+    },
+    {
+      "id": "wl",
+      "frontColorHex": "#000000",
+      "backColorHex": "#FFFFFF",
+      "diameter": 180
+    }
+  ]
+}

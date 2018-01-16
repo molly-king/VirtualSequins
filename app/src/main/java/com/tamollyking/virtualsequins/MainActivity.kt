@@ -58,13 +58,17 @@ class MainActivity : AppCompatActivity() {
             for (j in 1 until column.sequins.size) {
                 val sequinId = column.sequins.get(j)
                 val s = Sequin(this, sequinMap.get(sequinId))
-                val seed = 100 * column.index
+                val seed = column.index * 2000
                 s.id = seed + j
-                s.z = 2.0f * column.index
+                s.z = 1.5f * j
                 layout.addView(s)
                 val constraintSet = ConstraintSet()
                 constraintSet.clone(layout)
-                var topId = if (j > 1)  s.id - 1 else topSequin.id
+                val topId = if (j > 1) {
+                    s.id - 1
+                } else {
+                    topSequin.id
+                }
                 // align horizontally with top of row
                 constraintSet.connect(s.id, ConstraintSet.START, topSequin.id, ConstraintSet.START)
                 constraintSet.connect(s.id, ConstraintSet.END, topSequin.id, ConstraintSet.END)
@@ -78,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun readLayoutFile(): String {
-        val inputStream : InputStream = assets.open("Files/example.json")
+        val inputStream : InputStream = assets.open("Files/poo.json")
         val inputString = inputStream.bufferedReader().use {
             it.readText()
         }
