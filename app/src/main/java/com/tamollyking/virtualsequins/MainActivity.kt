@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             if (column.index < layoutMod.columns.size - 1) {
                 rightId = topSequin.id + 1
             }
-//            connect horizontally
+            // connect horizontally
             constraints.addToHorizontalChain(topSequin.id, leftId, rightId)
             constraints.applyTo(layout)
             for (j in 1 until column.sequins.size) {
