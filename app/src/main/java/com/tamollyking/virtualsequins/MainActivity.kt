@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
         val layoutMod = moshi.adapter<LayoutModel>(LayoutModel::class.java).fromJson(layoutJson)
         var sequinMap : Map<String, SequinModel> = HashMap<String, SequinModel>()
+        assertNotNull(layoutMod)
         for (sequin in layoutMod!!.sequins) {
             sequinMap = sequinMap.plus(Pair(sequin.id, sequin))
         }
